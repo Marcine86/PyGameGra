@@ -15,6 +15,16 @@ class Block: # Klasa reprezentująca pojedynczy blok
         self.row_offset += rows
         self.col_offset += cols
 
+    def rotate(self):
+        self.rotation_state += 1
+        if self.rotation_state == len(self.cells):
+            self.rotation_state = 0
+    
+    def unrotate(self):
+        self.rotation_state -= 1
+        if self.rotation_state < 0:
+            self.rotation_state = len(self.cells) - 1
+
     def get_positioned_cells(self):
         tiles = self.cells[self.rotation_state]
         moved_tiles = []

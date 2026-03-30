@@ -39,6 +39,12 @@ class Game: # Interfejs do gry, zarządza logiką gry, blokami i siatką.
         self.current_block.move(1, 0)
         if not self.block_inside_grid(self.current_block):
             self.current_block.move(-1, 0) # Cofnięcie ruchu w dół, jeśli blok jest poza siatką
+            self.lock_block()
+
+    def rotate(self):
+        self.current_block.rotate()
+        if not self.block_inside_grid(self.current_block):# Cofnięcie obrotu, jeśli blok jest poza siatką
+            self.current_block.unrotate()
 
     def draw(self, screen): # Rysuję siatkę i bloki na ekranie
         self.grid.draw_grid(screen)
