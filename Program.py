@@ -1,6 +1,7 @@
 import pygame
 import sys
 from classes.game import Game
+from classes.colors import (RED, GREEN, BLUE, YELLOW, CYAN, ORANGE)
 WIDTH = 600
 HEIGHT = 600
 
@@ -10,6 +11,11 @@ BACKGROUND = (0,0,30)
 
 # Inicjalizacja okna gry
 pygame.init()
+
+FONT = pygame.font.Font('ARCADE_N.TTF', 15)
+SCORE = FONT.render('SCORE: ', True, (255, 255, 255))
+NEXT_BLOCK = FONT.render('NEXT BLOCK: ', True, (255, 255, 255))
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("TETRIS")
 clock = pygame.time.Clock()
@@ -26,17 +32,26 @@ while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkowni
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if game.game_over:
+                game.game_over = False
+                game.__init__() # Restart gry
+            if event.key == pygame.K_LEFT and not game.game_over:
                 game.move_left() # Ruch w lewo
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and not game.game_over:
                 game.move_right() # Ruch w prawo
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN and not game.game_over:
                 game.move_down() # Ruch w dół
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and not game.game_over:
                 game.rotate() # Obrót bloku
-        if event.type == GAME_UPDATE:
+        if event.type == GAME_UPDATE and not game.game_over:
                 game.move_down() # Automatyczny ruch w dół
+    
     screen.fill(BACKGROUND)
+    screen.blit(SCORE, (350, 50)) 
+    screen.blit(NEXT_BLOCK, (350, 200)) 
+    if (game.game_over):
+        GAME_OVER_TEXT = FONT.render("GAME OVER", True, RED)
+        screen.blit(GAME_OVER_TEXT, (350, 400))
     game.draw(screen) # Rysuję grę na ekranie
     pygame.display.update()
     clock.tick(FPS)

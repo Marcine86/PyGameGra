@@ -51,4 +51,4 @@ class Grid:
                     pygame.draw.rect(screen, color, (col * self.cell_size, row * self.cell_size, self.cell_size - 1, self.cell_size - 1))
                 
                 # Draw grid lines
-                pygame.draw.rect(screen, (205, 205, 205), (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size), 1)
+                #pygame.draw.rect(screen, (205, 205, 205), (col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size), 1)
