@@ -13,6 +13,7 @@ class I_Block(Block):
             2: [Position(0, 0), Position(1, 0), Position(2, 0), Position(3, 0)],  # Vertical
             3: [Position(0, 0), Position(0, 1), Position(0, 2), Position(0, 3)],  # Horizontal
         }
+        self.move(0, 3)
 
 
 class O_Block(Block):
@@ -25,6 +26,7 @@ class O_Block(Block):
             2: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
             3: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
         }
+        self.move(0, 3)
 
 
 class T_Block(Block):
@@ -37,6 +39,7 @@ class T_Block(Block):
             2: [Position(1, 0), Position(1, 1), Position(1, 2), Position(0, 1)],  # Down
             3: [Position(0, 1), Position(1, 1), Position(2, 1), Position(1, 2)],  # Left
         }
+        self.move(0, 3)
 
 
 class S_Block(Block):
@@ -49,6 +52,7 @@ class S_Block(Block):
             2: [Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1)],  # Horizontal
             3: [Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)],  # Vertical
         }
+        self.move(0, 3)
 
 
 class Z_Block(Block):
@@ -61,6 +65,7 @@ class Z_Block(Block):
             2: [Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)],  # Horizontal
             3: [Position(0, 1), Position(1, 1), Position(1, 0), Position(2, 0)],  # Vertical
         }
+        self.move(0, 3)
 
 
 class J_Block(Block):
@@ -73,6 +78,7 @@ class J_Block(Block):
             2: [Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)],  # Up-Left
             3: [Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)],  # Right-Up
         }
+        self.move(0, 3)
 
 
 class L_Block(Block):
@@ -85,6 +91,7 @@ class L_Block(Block):
             2: [Position(0, 0), Position(0, 1), Position(1, 0), Position(2, 0)],  # Up-Right
             3: [Position(0, 0), Position(0, 1), Position(0, 2), Position(1, 2)],  # Left-Up
         }
+        self.move(0, 3)
 
 
 # Dictionary to create blocks by id

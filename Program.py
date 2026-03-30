@@ -20,6 +20,7 @@ game_grid = Grid()
 
 block = create_block(0)
 block.rotation_state = 0
+block.move(1, 0)
 
 while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkownik jej nie zamknie
     for event in pygame.event.get():
