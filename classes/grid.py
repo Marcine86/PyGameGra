@@ -13,6 +13,31 @@ class Grid:
     def is_empty(self, row, col):
         return self.grid[row][col] == 0
 
+    def is_row_full(self, row):
+        for cul in range(self.cols):
+            if self.grid[row][cul] == 0:
+                return False
+        return True
+
+    def clear_row(self, row):
+        for col in range(self.cols):
+            self.grid[row][col] = 0
+
+    def move_rows_down(self, row, num_rows):
+        for col in range(self.cols):
+            self.grid[row+num_rows][col] = self.grid[row][col]
+            self.grid[row][col] = 0
+
+    def clear_full_rows(self):
+        cleared = 0
+        for row in range(self.rows-1, -1, -1):
+            if self.is_row_full(row):
+                self.clear_row(row)
+                cleared += 1
+            elif cleared > 0:
+                self.move_rows_down(row, cleared)
+        return cleared
+
     def draw_grid(self, screen):
         from classes.colors import BLOCK_COLORS
         for row in range(self.rows):

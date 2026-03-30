@@ -60,6 +60,7 @@ class Game: # Interfejs do gry, zarządza logiką gry, blokami i siatką.
                 self.grid.grid[tile.y][tile.x] = self.current_block.id + 1  # Zablokowanie bloku w siatce
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
+        self.grid.clear_full_rows()
 
     def draw(self, screen): # Rysuję siatkę i bloki na ekranie
         self.grid.draw_grid(screen)
