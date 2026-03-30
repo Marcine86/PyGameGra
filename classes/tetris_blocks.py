@@ -1,11 +1,12 @@
-from position import Position
-from blocks import Block
+from classes.position import Position
+from classes.blocks import Block
 
 # Autowygenerowane klasy kształtów z gry Tetris **AI** 
 class I_Block(Block):
     """I-Block (Cyan) - 4 tiles in a line"""
     def __init__(self):
         super().__init__(0)
+        self.id = 0
         self.cells = {
             0: [Position(0, 0), Position(1, 0), Position(2, 0), Position(3, 0)],  # Vertical
             1: [Position(0, 0), Position(0, 1), Position(0, 2), Position(0, 3)],  # Horizontal
