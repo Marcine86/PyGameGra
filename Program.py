@@ -1,9 +1,7 @@
 import pygame
 import sys
-from classes.grid import Grid
-from classes.tetris_blocks import create_block
-
-WIDTH = 800
+from classes.game import Game
+WIDTH = 600
 HEIGHT = 600
 
 FPS = 60
@@ -16,20 +14,22 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("TETRIS")
 clock = pygame.time.Clock()
 
-game_grid = Grid()
-
-block = create_block(0)
-block.rotation_state = 0
-block.move(1, 0)
+game = Game() # Instancja gry.
 
 while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkownik jej nie zamknie
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                game.current_block.move(0, -1) # Ruch w lewo
+            if event.key == pygame.K_RIGHT:
+                game.current_block.move(0, 1) # Ruch w prawo
+            if event.key == pygame.K_DOWN:
+                game.current_block.move(1, 0) # Ruch w dół
         
     screen.fill(BACKGROUND)
-    game_grid.draw_grid(screen) # Rysowanie siatki do gry **AI**
-    block.draw(screen)
+    game.draw(screen) # Rysuję grę na ekranie
     pygame.display.update()
     clock.tick(FPS)

@@ -26,7 +26,7 @@ class Block: # Klasa reprezentująca pojedynczy blok
     def draw(self, screen):
         tiles = self.get_positioned_cells()
         for tile in tiles:
-            x = tile.x * self.cell_size + self.col_offset * self.cell_size
-            y = tile.y * self.cell_size + self.row_offset * self.cell_size
+            x = tile.x * self.cell_size
+            y = tile.y * self.cell_size
             tile_rect = pygame.Rect((x, y, self.cell_size-1, self.cell_size-1))
             pygame.draw.rect(screen, BLOCK_COLORS[self.id], tile_rect) # Rysowanie płytek bloku
