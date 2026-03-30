@@ -27,24 +27,39 @@ class Game: # Interfejs do gry, zarządza logiką gry, blokami i siatką.
     # Wygenerowane metody ruchu bloków **AI**
     def move_left(self):
         self.current_block.move(0, -1)
-        if not self.block_inside_grid(self.current_block):
+        if not self.block_inside_grid(self.current_block) or not self.block_fits():
             self.current_block.move(0, 1) # Cofnięcie ruchu w lewo, jeśli blok jest poza siatką
     
     def move_right(self):
         self.current_block.move(0, 1)
-        if not self.block_inside_grid(self.current_block):
+        if not self.block_inside_grid(self.current_block) or not self.block_fits():
             self.current_block.move(0, -1) # Cofnięcie ruchu w prawo, jeśli blok jest poza siatką
 
     def move_down(self):
         self.current_block.move(1, 0)
-        if not self.block_inside_grid(self.current_block):
+        if not self.block_inside_grid(self.current_block) or not self.block_fits():
             self.current_block.move(-1, 0) # Cofnięcie ruchu w dół, jeśli blok jest poza siatką
             self.lock_block()
 
-    def rotate(self):
+    def rotate(self): # Obraca blok, a jeśli jest poza siatką, cofa obrót
         self.current_block.rotate()
         if not self.block_inside_grid(self.current_block):# Cofnięcie obrotu, jeśli blok jest poza siatką
             self.current_block.unrotate()
+
+    def block_fits(self): # Sprawdza czy blok nie koliduje z innymi blokami
+        tiles = self.current_block.get_positioned_cells()
+        for tile in tiles:
+            if not self.grid.is_empty(tile.y, tile.x):
+                return False
+        return True
+
+    def lock_block(self): # Blokuje blok w siatce i generuje nowy blok
+        tiles = self.current_block.get_positioned_cells()
+        for tile in tiles:
+            if self.grid.is_inside(tile.y, tile.x):  # Sprawdzenie czy blok jest w siatce
+                self.grid.grid[tile.y][tile.x] = self.current_block.id + 1  # Zablokowanie bloku w siatce
+        self.current_block = self.next_block
+        self.next_block = self.get_random_block()
 
     def draw(self, screen): # Rysuję siatkę i bloki na ekranie
         self.grid.draw_grid(screen)
