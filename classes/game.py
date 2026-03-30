@@ -17,6 +17,29 @@ class Game: # Interfejs do gry, zarządza logiką gry, blokami i siatką.
         block_class = random.choice(self.BLOCK_CLASSES)
         return block_class()
     
+    def block_inside_grid(self, block): # Sprawdza czy blok jest w siatce
+        tiles = self.current_block.get_positioned_cells()
+        for tile in tiles:
+            if not self.grid.is_inside(tile.y, tile.x):
+                return False
+        return True
+    
+    # Wygenerowane metody ruchu bloków **AI**
+    def move_left(self):
+        self.current_block.move(0, -1)
+        if not self.block_inside_grid(self.current_block):
+            self.current_block.move(0, 1) # Cofnięcie ruchu w lewo, jeśli blok jest poza siatką
+    
+    def move_right(self):
+        self.current_block.move(0, 1)
+        if not self.block_inside_grid(self.current_block):
+            self.current_block.move(0, -1) # Cofnięcie ruchu w prawo, jeśli blok jest poza siatką
+
+    def move_down(self):
+        self.current_block.move(1, 0)
+        if not self.block_inside_grid(self.current_block):
+            self.current_block.move(-1, 0) # Cofnięcie ruchu w dół, jeśli blok jest poza siatką
+
     def draw(self, screen): # Rysuję siatkę i bloki na ekranie
         self.grid.draw_grid(screen)
         self.current_block.draw(screen)

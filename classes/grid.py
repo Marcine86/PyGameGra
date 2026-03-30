@@ -7,6 +7,9 @@ class Grid:
         self.cell_size = cell_size
         self.grid = [[0 for _ in range(self.cols)] for i in range(self.rows)]
 
+    def is_inside(self, row, col):
+        return 0 <= row < self.rows and 0 <= col < self.cols
+
     def draw_grid(self, screen):
         for row in range(self.rows):
             for col in range(self.cols): # Rysowanie siatki do gry **AI**

@@ -23,12 +23,11 @@ while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkowni
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                game.current_block.move(0, -1) # Ruch w lewo
+                game.move_left() # Ruch w lewo
             if event.key == pygame.K_RIGHT:
-                game.current_block.move(0, 1) # Ruch w prawo
+                game.move_right() # Ruch w prawo
             if event.key == pygame.K_DOWN:
-                game.current_block.move(1, 0) # Ruch w dół
-        
+                game.move_down() # Ruch w dół
     screen.fill(BACKGROUND)
     game.draw(screen) # Rysuję grę na ekranie
     pygame.display.update()
