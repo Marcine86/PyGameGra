@@ -2,6 +2,7 @@ import pygame
 import sys
 from classes.game import Game
 from classes.colors import (RED, GREEN, BLUE, YELLOW, CYAN, ORANGE)
+from classes.menu import show_menu
 WIDTH = 600
 HEIGHT = 600
 
@@ -25,6 +26,8 @@ game = Game() # Instancja gry.
 TIME = 300
 GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, TIME) # Ustawia timer, który co {TIME} milisekund wywołuje zdarzenie GAME_UPDATE
+
+show_menu(screen, WIDTH) # Pokazuje menu startowe przed rozpoczęciem gry
 
 while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkownik jej nie zamknie
     for event in pygame.event.get():
