@@ -33,11 +33,14 @@ while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkowni
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if game.game_over:
-                game.game_over = False
-                game.__init__() # Restart gry
-                game.current_block = game.get_random_block()
-                game.next_block = game.get_random_block()
-                game.score = 0
+                if event.key == pygame.K_p:
+                    pygame.image.save(screen, "screenshot.png") # Zapisuje zrzut ekranu po naciśnięciu 'P'
+                else:
+                    game.game_over = False
+                    game.__init__() # Restart gry
+                    game.current_block = game.get_random_block()
+                    game.next_block = game.get_random_block()
+                    game.score = 0
             if event.key == pygame.K_LEFT and not game.game_over:
                 game.move_left() # Ruch w lewo
             if event.key == pygame.K_RIGHT and not game.game_over:

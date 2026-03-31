@@ -22,7 +22,7 @@ class Block: # Klasa reprezentująca pojedynczy blok
     
     def unrotate(self):
         self.rotation_state -= 1
-        if self.rotation_state < 0:
+        if self.rotation_state == 0:
             self.rotation_state = len(self.cells) - 1
 
     def get_positioned_cells(self):

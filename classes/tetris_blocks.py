@@ -8,12 +8,12 @@ class I_Block(Block):
         super().__init__(0)
         self.id = 0
         self.cells = {
-            0: [Position(0, 0), Position(1, 0), Position(2, 0), Position(3, 0)],  # Vertical
-            1: [Position(0, 0), Position(0, 1), Position(0, 2), Position(0, 3)],  # Horizontal
-            2: [Position(0, 0), Position(1, 0), Position(2, 0), Position(3, 0)],  # Vertical
-            3: [Position(0, 0), Position(0, 1), Position(0, 2), Position(0, 3)],  # Horizontal
+            0: [Position(1, 0), Position(1, 1), Position(1, 2), Position(1, 3)],  # Horizontal
+            1: [Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)],  # Vertical
+            2: [Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)],  # Horizontal
+            3: [Position(0, 1), Position(1, 1), Position(2, 1), Position(3, 1)],  # Vertical
         }
-        self.move(0, 3)
+        self.move(-1, 3)
 
 
 class O_Block(Block):
@@ -26,7 +26,7 @@ class O_Block(Block):
             2: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
             3: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
         }
-        self.move(0, 3)
+        self.move(0, 4)
 
 
 class T_Block(Block):
@@ -34,10 +34,10 @@ class T_Block(Block):
     def __init__(self):
         super().__init__(2)
         self.cells = {
-            0: [Position(0, 1), Position(1, 0), Position(1, 1), Position(1, 2)],  # Up
-            1: [Position(0, 1), Position(1, 1), Position(2, 1), Position(1, 0)],  # Right
-            2: [Position(1, 0), Position(1, 1), Position(1, 2), Position(0, 1)],  # Down
-            3: [Position(0, 1), Position(1, 1), Position(2, 1), Position(1, 2)],  # Left
+            0: [Position(1, 0), Position(0, 1), Position(1, 1), Position(2, 1)],  # Up
+            1: [Position(0, 0), Position(0, 1), Position(1, 1), Position(0, 2)],  # Right
+            2: [Position(0, 1), Position(1, 1), Position(2, 1), Position(1, 2)],  # Down
+            3: [Position(1, 0), Position(0, 1), Position(1, 1), Position(1, 2)],  # Left
         }
         self.move(0, 3)
 
@@ -60,10 +60,10 @@ class Z_Block(Block):
     def __init__(self):
         super().__init__(4)
         self.cells = {
-            0: [Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)],  # Horizontal
-            1: [Position(0, 1), Position(1, 1), Position(1, 0), Position(2, 0)],  # Vertical
-            2: [Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)],  # Horizontal
-            3: [Position(0, 1), Position(1, 1), Position(1, 0), Position(2, 0)],  # Vertical
+            0: [Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2)],  # Horizontal
+            1: [Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1)],  # Vertical
+            2: [Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2)],  # Horizontal
+            3: [Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)],  # Vertical
         }
         self.move(0, 3)
 
@@ -73,10 +73,10 @@ class J_Block(Block):
     def __init__(self):
         super().__init__(5)
         self.cells = {
-            0: [Position(0, 0), Position(1, 0), Position(2, 0), Position(2, 1)],  # Down-Right
-            1: [Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1)],  # Left-Down
-            2: [Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)],  # Up-Left
-            3: [Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)],  # Right-Up
+            0: [Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)],  # Up
+            1: [Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2)],  # Right
+            2: [Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)],  # Down
+            3: [Position(0, 0), Position(0, 1), Position(0, 2), Position(1, 2)],  # Left
         }
         self.move(0, 3)
 
@@ -86,10 +86,10 @@ class L_Block(Block):
     def __init__(self):
         super().__init__(6)
         self.cells = {
-            0: [Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 0)],  # Down-Left
-            1: [Position(0, 1), Position(1, 0), Position(1, 1), Position(1, 2)],  # Right-Down
-            2: [Position(0, 0), Position(0, 1), Position(1, 0), Position(2, 0)],  # Up-Right
-            3: [Position(0, 0), Position(0, 1), Position(0, 2), Position(1, 2)],  # Left-Up
+            0: [Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)],  # Up
+            1: [Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2)],  # Right
+            2: [Position(0, 0), Position(0, 1), Position(1, 0), Position(2, 0)],  # Down
+            3: [Position(0, 0), Position(0, 1), Position(0, 2), Position(1, 0)],  # Left
         }
         self.move(0, 3)
 
