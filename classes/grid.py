@@ -7,28 +7,28 @@ class Grid:
         self.cell_size = cell_size
         self.grid = [[0 for _ in range(self.cols)] for i in range(self.rows)]
 
-    def is_inside(self, row, col):
+    def is_inside(self, row, col): # Sprawdza pozycję wewnątrz siatki
         return 0 <= row < self.rows and 0 <= col < self.cols
     
-    def is_empty(self, row, col):
+    def is_empty(self, row, col): # Sprawdza czy podana komórka siatki jest pusta
         return self.grid[row][col] == 0
 
-    def is_row_full(self, row):
+    def is_row_full(self, row): # Sprawdza czy dany wiersz jest pełny
         for cul in range(self.cols):
             if self.grid[row][cul] == 0:
                 return False
         return True
 
-    def clear_row(self, row):
+    def clear_row(self, row): # Czyści dany wiersz
         for col in range(self.cols):
             self.grid[row][col] = 0
 
-    def move_rows_down(self, row, num_rows):
+    def move_rows_down(self, row, num_rows): # Przesuwa ilość wierszy w dół
         for col in range(self.cols):
             self.grid[row+num_rows][col] = self.grid[row][col]
             self.grid[row][col] = 0
 
-    def clear_full_rows(self):
+    def clear_full_rows(self): # Czyści pełne wiersze i przesuwa pozostałe w dół, zwraca liczbę usuniętych wierszy
         cleared = 0
         for row in range(self.rows-1, -1, -1):
             if self.is_row_full(row):
@@ -38,7 +38,7 @@ class Grid:
                 self.move_rows_down(row, cleared)
         return cleared
 
-    def draw_grid(self, screen):
+    def draw_grid(self, screen): # Rysuję siatkę i zablokowane bloki na ekranie
         from classes.colors import BLOCK_COLORS
         for row in range(self.rows):
             for col in range(self.cols):

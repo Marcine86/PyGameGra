@@ -70,5 +70,5 @@ while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkowni
         screen.blit(GAME_OVER_TEXT, (350, 400))
     
     game.draw(screen) # Rysuję grę na ekranie
-    pygame.display.update()
-    clock.tick(FPS)
+    pygame.display.update() # Aktualizuję ekran
+    clock.tick(FPS) # Ustawia liczbę klatek na sekundę
