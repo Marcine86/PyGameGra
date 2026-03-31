@@ -12,6 +12,17 @@ class Game: # Interfejs do gry, zarządza logiką gry, blokami i siatką.
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
         self.game_over = False
+        self.score = 0
+
+    def update_score(self, rows_cleared): # Aktualizuje wynik na podstawie liczby usuniętych wierszy
+        match rows_cleared:
+            case 1:
+                self.score += 100
+            case 2:
+                self.score += 300
+            case 3:
+                self.score += 500
+        self.score += 10
 
     def get_random_block(self): # **AI** Bierze losowy blok z listy bloków
         """Get a random Tetris block"""
@@ -61,10 +72,12 @@ class Game: # Interfejs do gry, zarządza logiką gry, blokami i siatką.
                 self.grid.grid[tile.y][tile.x] = self.current_block.id + 1  # Zablokowanie bloku w siatce
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
-        self.grid.clear_full_rows()
+        rows_cleared = self.grid.clear_full_rows()
+        self.update_score(rows_cleared)
         if self.block_fits() == False:
             self.game_over = True
 
     def draw(self, screen): # Rysuję siatkę i bloki na ekranie
         self.grid.draw_grid(screen)
         self.current_block.draw(screen)
+        self.next_block.draw(screen, 360, 250)

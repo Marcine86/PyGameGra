@@ -35,6 +35,9 @@ while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkowni
             if game.game_over:
                 game.game_over = False
                 game.__init__() # Restart gry
+                game.current_block = game.get_random_block()
+                game.next_block = game.get_random_block()
+                game.score = 0
             if event.key == pygame.K_LEFT and not game.game_over:
                 game.move_left() # Ruch w lewo
             if event.key == pygame.K_RIGHT and not game.game_over:
@@ -46,12 +49,20 @@ while True: # Petla gry. Dzięki petli, gra będzie działać dopóki użytkowni
         if event.type == GAME_UPDATE and not game.game_over:
                 game.move_down() # Automatyczny ruch w dół
     
+    
     screen.fill(BACKGROUND)
+    
     screen.blit(SCORE, (350, 50)) 
+    
+    SCORE_VALUE = FONT.render(str(game.score), True, (255, 255, 255))
+    screen.blit(SCORE_VALUE, (450, 50))
+
     screen.blit(NEXT_BLOCK, (350, 200)) 
+    
     if (game.game_over):
         GAME_OVER_TEXT = FONT.render("GAME OVER", True, RED)
         screen.blit(GAME_OVER_TEXT, (350, 400))
+    
     game.draw(screen) # Rysuję grę na ekranie
     pygame.display.update()
     clock.tick(FPS)
